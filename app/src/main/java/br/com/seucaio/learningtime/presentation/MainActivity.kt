@@ -10,6 +10,7 @@ import br.com.seucaio.learningtime.data.model.MovieResponse
 import br.com.seucaio.learningtime.domain.usecase.GetPopularMoviesUseCase
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             whenCreated {
                 val movies: MovieResponse = useCase()
-                Log.v("MainActivity ->" ,"${movies.results}")
+                Timber.i("${movies.results}")
             }
         }
 

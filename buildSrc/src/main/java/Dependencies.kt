@@ -40,6 +40,9 @@ object Dependencies {
     // Gson
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
 
+    // Timber
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+
     //test libs
     const val junit = "junit:junit:${Versions.junit}"
     const val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
