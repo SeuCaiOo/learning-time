@@ -36,16 +36,45 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     // app
-    implementation Dependencies.kotlin
-    implementation Dependencies.core
-    implementation Dependencies.appCompat
-    implementation Dependencies.material
-    implementation Dependencies.constraintLayout
+    implementation(Dependencies.kotlin)
+
+    // Jetpack
+    implementation(Dependencies.coreKtx)
+    implementation(Dependencies.appCompat)
+    implementation(Dependencies.material)
+    implementation(Dependencies.constraintLayout)
+
+    implementation (Dependencies.lifecycleLiveDataKtxCore)
+    implementation (Dependencies.lifecycleLiveDataKtx)
+    implementation (Dependencies.lifecycleRuntimeKtx)
+    implementation (Dependencies.lifecycleViewModelKtx)
+
+    // Coroutines
+    implementation(Dependencies.coroutines)
+
+    // Koin
+    implementation(Dependencies.koinCore)
+    implementation(Dependencies.koinCoreExt)
+    implementation(Dependencies.koinAndroid)
+    implementation(Dependencies.koinAndroidExt)
+
+    // Retrofit
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.retrofitConvertGson)
+
+    // OkHttp
+    implementation(platform(Dependencies.okHttpBom))
+    implementation(Dependencies.okHttp)
+    implementation(Dependencies.okHttpLoggingInterceptor)
+
+    // Gson
+    implementation(Dependencies.gson)
 
     // test
-    testImplementation Dependencies.junit
+    testImplementation (Dependencies.junit)
+    testImplementation(Dependencies.okHttpMockWebServer)
 
     // androidTest
-    androidTestImplementation Dependencies.extJUnit
-    androidTestImplementation Dependencies.espressoCore
+    androidTestImplementation (Dependencies.extJUnit)
+    androidTestImplementation (Dependencies.espressoCore)
 }
