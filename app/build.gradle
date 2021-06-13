@@ -53,6 +53,8 @@ dependencies {
     implementation (Dependencies.lifecycleLiveDataKtx)
     implementation (Dependencies.lifecycleRuntimeKtx)
     implementation (Dependencies.lifecycleViewModelKtx)
+    implementation(Dependencies.navigationFragmentKtx)
+    implementation(Dependencies.navigationUiKtx)
 
     // Coroutines
     implementation(Dependencies.coroutines)
