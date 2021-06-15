@@ -1,44 +1,39 @@
 package br.com.seucaio.learningtime.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenCreated
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import br.com.seucaio.learningtime.R
-import br.com.seucaio.learningtime.data.model.MovieResponse
-import br.com.seucaio.learningtime.domain.usecase.GetPopularMoviesUseCase
-import kotlinx.coroutines.*
-import org.koin.android.ext.android.inject
-import timber.log.Timber
-import java.lang.Exception
+import br.com.seucaio.learningtime.databinding.ActivityMainBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    val useCase by inject<GetPopularMoviesUseCase>()
+    private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        lifecycleScope.launch {
-            whenCreated {
-                val movies = async { useCase.invokeAsync() }
-                runCatching {
-//                    getMovies()
-                    movies.await()
-                }
-                    .onSuccess { response -> Timber.d("${response.results}") }
-                    .onFailure { Timber.e(it) }
+        viewModel.movies.observe(this, Observer { movies ->
+            val firstTitle = movies.results.first().title
+            binding.title.text = firstTitle
+        })
 
+        viewModel.progressBarVisible.observe(this, Observer {
+            binding.progressBar.isVisible =it
+        })
 
+        viewModel.hasError.observe(this, Observer {
+            if (it) {
+                val message = "Erro desconhecido"
+                binding.title.text = message
             }
-        }
-
-    }
-
-    private suspend fun getMovies() {
-        val movies: MovieResponse = useCase()
-        Timber.i("${movies.results}")
+        })
     }
 
 }

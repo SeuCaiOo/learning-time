@@ -7,15 +7,16 @@ import br.com.seucaio.learningtime.data.datasource.PopularDataSourceImpl
 import br.com.seucaio.learningtime.data.repository.PopularRepositoryImpl
 import br.com.seucaio.learningtime.domain.repository.PopularRepository
 import br.com.seucaio.learningtime.domain.usecase.GetPopularMoviesUseCase
+import br.com.seucaio.learningtime.presentation.MainViewModel
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 object AppModule {
 
@@ -42,6 +43,14 @@ object AppModule {
         factory { GetPopularMoviesUseCase(repository = get()) }
     }
 
+    private val presentationModule = module {
 
-    fun init() = loadKoinModules(listOf(dataModule, domainModule))
+        viewModel<MainViewModel> {
+            MainViewModel(useCase = get())
+        }
+
+    }
+
+
+    fun init() = loadKoinModules(listOf(dataModule, domainModule, presentationModule))
 }
