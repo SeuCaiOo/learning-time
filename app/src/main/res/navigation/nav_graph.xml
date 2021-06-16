@@ -9,6 +9,27 @@
         android:id="@+id/navigation_main"
         android:name="br.com.seucaio.learningtime.presentation.MainFragment"
         android:label="@string/title_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_navigation_main_to_navigation_watchlist"
+            app:destination="@id/navigation_watchlist" />
+
+        <action
+            android:id="@+id/action_navigation_main_to_navigation_favorites"
+            app:destination="@id/navigation_favorites" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_watchlist"
+        android:name="br.com.seucaio.learningtime.presentation.watchlist.WatchlistFragment"
+        android:label="@string/watchlist"
+        tools:layout="@layout/fragment_watchlist" />
+
+    <fragment
+        android:id="@+id/navigation_favorites"
+        android:name="br.com.seucaio.learningtime.presentation.favorites.FavoritesFragment"
+        android:label="@string/favorites"
+        tools:layout="@layout/fragment_favorites" />
 
 </navigation>

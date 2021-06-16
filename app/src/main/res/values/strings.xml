@@ -2,4 +2,9 @@
     <string name="app_name">learning-time</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_main">Main</string>
+
+    <string name="watchlist_fragment">Watchlist fragment</string>
+    <string name="favorites_fragment">Favorite fragment</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="favorites">Favorites</string>
 </resources>
