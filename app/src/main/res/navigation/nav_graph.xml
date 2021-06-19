@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_navigation_main_to_navigation_favorites"
             app:destination="@id/navigation_favorites" />
+        <action
+            android:id="@+id/action_navigation_main_to_popularMoviesFragment"
+            app:destination="@id/navigation_popular_movies" />
     </fragment>
 
     <fragment
@@ -31,5 +34,11 @@
         android:name="br.com.seucaio.learningtime.presentation.favorites.FavoritesFragment"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/navigation_popular_movies"
+        android:name="br.com.seucaio.learningtime.presentation.popular.PopularMoviesFragment"
+        android:label="@string/popular_movies"
+        tools:layout="@layout/fragment_popular_movies" />
 
 </navigation>

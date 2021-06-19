@@ -58,9 +58,11 @@ class MainFragment : Fragment() {
                 null
             )
         )
-//        binding.btinFavorites.setOnClickListener {
-//            Navigation.createNavigateOnClickListener(R.id.action_navigation_main_to_navigation_favorites, null)
-//        }
+
+        binding.btnPopularMovies.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_main_to_popularMoviesFragment)
+        }
+
     }
 
     override fun onDestroyView() {

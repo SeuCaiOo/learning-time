@@ -29,20 +29,31 @@
         android:id="@+id/btn_watchlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/watchlist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btin_favorites"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintBottom_toTopOf="@+id/btin_favorites"
+        app:layout_constraintEnd_toEndOf="@+id/btin_favorites"
+        app:layout_constraintStart_toStartOf="@+id/btin_favorites" />
 
     <Button
         android:id="@+id/btin_favorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/favorites"
-        app:layout_constraintEnd_toStartOf="@+id/btn_watchlist"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_popular_movies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/popular_movies"
+        app:layout_constraintBottom_toTopOf="@+id/btn_watchlist"
+        app:layout_constraintEnd_toEndOf="@+id/btn_watchlist"
+        app:layout_constraintStart_toStartOf="@+id/btn_watchlist" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
