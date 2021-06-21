@@ -19,26 +19,36 @@
             android:id="@+id/action_navigation_main_to_navigation_favorites"
             app:destination="@id/navigation_favorites" />
         <action
-            android:id="@+id/action_navigation_main_to_popularMoviesFragment"
+            android:id="@+id/action_navigation_main_to_navigation_popular_movies"
             app:destination="@id/navigation_popular_movies" />
+
+        <action
+            android:id="@+id/action_navigation_main_to_navigation_popular_tv"
+            app:destination="@id/navigation_popular_tv" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_watchlist"
-        android:name="br.com.seucaio.learningtime.presentation.watchlist.WatchlistFragment"
+        android:name="br.com.seucaio.learningtime.presentation.movie.watchlist.WatchlistFragment"
         android:label="@string/watchlist"
         tools:layout="@layout/fragment_watchlist" />
 
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="br.com.seucaio.learningtime.presentation.favorites.FavoritesFragment"
+        android:name="br.com.seucaio.learningtime.presentation.movie.favorites.FavoritesFragment"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/navigation_popular_movies"
-        android:name="br.com.seucaio.learningtime.presentation.popular.PopularMoviesFragment"
+        android:name="br.com.seucaio.learningtime.presentation.movie.popular.PopularMoviesFragment"
         android:label="@string/popular_movies"
         tools:layout="@layout/fragment_popular_movies" />
+
+    <fragment
+        android:id="@+id/navigation_popular_tv"
+        android:name="br.com.seucaio.learningtime.presentation.tv.popular.PopularTvFragment"
+        android:label="@string/popular_tv"
+        tools:layout="@layout/fragment_popular_tv" />
 
 </navigation>

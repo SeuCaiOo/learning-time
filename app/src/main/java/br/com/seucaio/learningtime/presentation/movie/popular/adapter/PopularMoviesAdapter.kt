@@ -1,13 +1,14 @@
-package br.com.seucaio.learningtime.presentation.popular.adapter
+package br.com.seucaio.learningtime.presentation.movie.popular.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.seucaio.learningtime.data.model.MovieResponse
+import br.com.seucaio.learningtime.data.model.movie.PopularMovieResponse
 import br.com.seucaio.learningtime.databinding.PopularMoviesItemBinding
+import br.com.seucaio.learningtime.presentation.tv.popular.adapter.PopularTvItemViewHolder
 
 class PopularMoviesAdapter(
-    private val list: List<MovieResponse.Movie>
+    private val list: List<PopularMovieResponse>
 ) : RecyclerView.Adapter<PopularMoviesItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMoviesItemViewHolder {

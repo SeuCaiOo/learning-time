@@ -6,7 +6,9 @@
     <string name="watchlist_fragment">Watchlist fragment</string>
     <string name="favorites_fragment">Favorite fragment</string>
     <string name="popular_movies_fragment">Popular Movies fragment</string>
+    <string name="popular_tv_fragment">Popular TV fragment</string>
     <string name="watchlist">Watchlist</string>
     <string name="favorites">Favorites</string>
     <string name="popular_movies">Popular Movies</string>
+    <string name="popular_tv">Popular TV</string>
 </resources>

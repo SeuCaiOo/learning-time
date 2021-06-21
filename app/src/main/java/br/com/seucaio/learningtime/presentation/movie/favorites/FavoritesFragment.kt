@@ -1,4 +1,4 @@
-package br.com.seucaio.learningtime.presentation.favorites
+package br.com.seucaio.learningtime.presentation.movie.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater

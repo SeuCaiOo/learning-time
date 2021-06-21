@@ -1,20 +1,21 @@
-package br.com.seucaio.learningtime.presentation
+package br.com.seucaio.learningtime.presentation.movie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.seucaio.learningtime.data.model.MovieResponse
-import br.com.seucaio.learningtime.domain.usecase.GetPopularMoviesUseCase
+import br.com.seucaio.learningtime.data.model.TMDBResponse
+import br.com.seucaio.learningtime.data.model.movie.PopularMovieResponse
+import br.com.seucaio.learningtime.domain.usecase.movie.GetPopularMoviesUseCase
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MainViewModel(
+class MovieViewModel(
     private val useCase: GetPopularMoviesUseCase
 ) : ViewModel() {
 
-    private val _movies = MutableLiveData<MovieResponse>()
-    val movies: LiveData<MovieResponse>
+    private val _movies = MutableLiveData<TMDBResponse<PopularMovieResponse>>()
+    val tv: LiveData<TMDBResponse<PopularMovieResponse>>
         get() = _movies
 
     private val _progressBarVisible = MutableLiveData<Boolean>()
@@ -23,12 +24,8 @@ class MainViewModel(
     private val _hasError = MutableLiveData<Boolean>()
     val hasError: LiveData<Boolean> = _hasError
 
-    init {
-        fetchMovies()
-    }
 
-
-    private fun fetchMovies() {
+    fun fetchPopularMovies() {
         _progressBarVisible.value = true
         viewModelScope.launch {
             runCatching { useCase() }

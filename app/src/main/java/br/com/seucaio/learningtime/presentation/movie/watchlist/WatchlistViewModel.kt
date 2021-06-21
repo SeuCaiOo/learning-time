@@ -1,4 +1,4 @@
-package br.com.seucaio.learningtime.presentation.watchlist
+package br.com.seucaio.learningtime.presentation.movie.watchlist
 
 import androidx.lifecycle.ViewModel
 
