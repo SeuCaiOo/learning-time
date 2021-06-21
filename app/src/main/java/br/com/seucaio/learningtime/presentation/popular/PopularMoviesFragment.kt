@@ -32,13 +32,11 @@ class PopularMoviesFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         viewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
-            moviesAdapter = PopularMoviesAdapter(movies.results.map { it.title })
+            moviesAdapter = PopularMoviesAdapter(movies.results)
             binding.recyclerPopularMovies.adapter = moviesAdapter
         })
 
