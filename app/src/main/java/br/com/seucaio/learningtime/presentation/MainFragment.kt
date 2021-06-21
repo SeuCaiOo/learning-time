@@ -33,7 +33,7 @@ class MainFragment : Fragment() {
 
         binding.btinFavorites.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                R.id.navigation_favorites,
+                R.id.navigation_favorite_movies,
                 null
             )
         )

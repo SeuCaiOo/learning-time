@@ -13,11 +13,11 @@
 
         <action
             android:id="@+id/action_navigation_main_to_navigation_watchlist"
-            app:destination="@id/navigation_watchlist" />
+            app:destination="@id/navigation_watchlist_movies" />
 
         <action
             android:id="@+id/action_navigation_main_to_navigation_favorites"
-            app:destination="@id/navigation_favorites" />
+            app:destination="@id/navigation_favorite_movies" />
         <action
             android:id="@+id/action_navigation_main_to_navigation_popular_movies"
             app:destination="@id/navigation_popular_movies" />
@@ -28,16 +28,16 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_watchlist"
-        android:name="br.com.seucaio.learningtime.presentation.movie.watchlist.WatchlistFragment"
+        android:id="@+id/navigation_watchlist_movies"
+        android:name="br.com.seucaio.learningtime.presentation.movie.account.watchlist.WatchlistMoviesFragment"
         android:label="@string/watchlist"
-        tools:layout="@layout/fragment_watchlist" />
+        tools:layout="@layout/fragment_watchlist_movies" />
 
     <fragment
-        android:id="@+id/navigation_favorites"
-        android:name="br.com.seucaio.learningtime.presentation.movie.favorites.FavoritesFragment"
+        android:id="@+id/navigation_favorite_movies"
+        android:name="br.com.seucaio.learningtime.presentation.movie.account.favorites.FavoriteMoviesFragment"
         android:label="@string/favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites_movies" />
 
     <fragment
         android:id="@+id/navigation_popular_movies"

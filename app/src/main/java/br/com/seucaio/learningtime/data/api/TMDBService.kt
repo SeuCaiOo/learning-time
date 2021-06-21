@@ -1,6 +1,7 @@
 package br.com.seucaio.learningtime.data.api
 
 import br.com.seucaio.learningtime.data.model.TMDBResponse
+import br.com.seucaio.learningtime.data.model.movie.AccountMoviesResponse
 import br.com.seucaio.learningtime.data.model.movie.PopularMovieResponse
 import br.com.seucaio.learningtime.data.model.tv.PopularTVResponse
 import retrofit2.http.GET
@@ -27,17 +28,19 @@ interface TMDBService {
         @Query("page") page: String = "1"
     ): TMDBResponse<PopularMovieResponse>
 
-//    @GET("account/${ACCOUNT_ID}/favorite/movies")
-//    suspend fun getFavoritesMovies(
-//        @Query("api_key") apiKey: String = API_KEY,
-//        @Query("session_id") sessionId: String = SESSION_ID,
-//    ) : MovieResponse
-//
-//    @GET("account/${ACCOUNT_ID}/watchlist/movies")
-//    suspend fun getWatchlistMovies(
-//        @Query("api_key") apiKey: String = API_KEY,
-//        @Query("session_id") sessionId: String = SESSION_ID,
-//    ) : MovieResponse
+    @GET("account/${ACCOUNT_ID}/watchlist/movies")
+    suspend fun getWatchlistMovies(
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("session_id") sessionId: String = SESSION_ID,
+        @Query("language") language: String = "pt-BR",
+    ) : TMDBResponse<AccountMoviesResponse>
+
+    @GET("account/${ACCOUNT_ID}/favorite/movies")
+    suspend fun getFavoritesMovies(
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("session_id") sessionId: String = SESSION_ID,
+        @Query("language") language: String = "pt-BR",
+    ) : TMDBResponse<AccountMoviesResponse>
 
 
 }

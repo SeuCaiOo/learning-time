@@ -6,6 +6,7 @@ import br.com.seucaio.learningtime.data.datasource.TMDBDataSource
 import br.com.seucaio.learningtime.data.datasource.TMDBDataSourceImpl
 import br.com.seucaio.learningtime.data.repository.TMDBRepositoryImpl
 import br.com.seucaio.learningtime.domain.repository.TMDBRepository
+import br.com.seucaio.learningtime.domain.usecase.movie.GetAccountMoviesUseCase
 import br.com.seucaio.learningtime.domain.usecase.movie.GetPopularMoviesUseCase
 import br.com.seucaio.learningtime.domain.usecase.tv.GetPopularTvUseCase
 import br.com.seucaio.learningtime.presentation.movie.MovieViewModel
@@ -44,12 +45,16 @@ object AppModule {
     private val domainModule = module {
         factory { GetPopularMoviesUseCase(repository = get()) }
         factory { GetPopularTvUseCase(repository = get()) }
+        factory { GetAccountMoviesUseCase(repository = get()) }
     }
 
     private val presentationModule = module {
 
         viewModel<MovieViewModel> {
-            MovieViewModel(useCase = get())
+            MovieViewModel(
+                popularMoviesUseCase = get(),
+                accountMoviesUseCase = get(),
+            )
         }
 
         viewModel<TvViewModel> {
