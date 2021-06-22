@@ -16,6 +16,7 @@ object Versions {
     const val okHttp = "4.9.0"
     const val gson = "2.8.7"
     const val timber = "4.7.1"
+    const val glide = "4.11.0"
 
     // test
     const val junit = "4.13.2"

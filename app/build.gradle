@@ -80,6 +80,9 @@ dependencies {
     // Timber
     implementation(Dependencies.timber)
 
+    // Glide
+    implementation(Dependencies.glide)
+
     // test
     testImplementation (Dependencies.junit)
     testImplementation(Dependencies.okHttpMockWebServer)

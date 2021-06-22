@@ -49,6 +49,9 @@ object Dependencies {
     // Timber
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
+    // Glide
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+
     //test libs
     const val junit = "junit:junit:${Versions.junit}"
     const val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"

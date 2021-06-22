@@ -14,7 +14,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PopularMoviesFragment : Fragment() {
 
-    //    private val viewModel: WatchlistViewModel by viewModel()
     private var _binding: FragmentPopularMoviesBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.
@@ -37,7 +36,7 @@ class PopularMoviesFragment : Fragment() {
 
         viewModel.fetchPopularMovies()
 
-        viewModel.movie.observe(viewLifecycleOwner, Observer { movies ->
+        viewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
             moviesAdapter = PopularMoviesAdapter(movies.results)
             binding.recyclerPopularMovies.adapter = moviesAdapter
         })

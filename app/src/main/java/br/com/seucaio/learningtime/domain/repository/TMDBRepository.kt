@@ -2,6 +2,7 @@ package br.com.seucaio.learningtime.domain.repository
 
 import br.com.seucaio.learningtime.data.model.TMDBResponse
 import br.com.seucaio.learningtime.data.model.movie.AccountMoviesResponse
+import br.com.seucaio.learningtime.data.model.movie.MovieDetailsResponse
 import br.com.seucaio.learningtime.data.model.movie.PopularMovieResponse
 import br.com.seucaio.learningtime.data.model.tv.PopularTVResponse
 
@@ -13,4 +14,6 @@ interface TMDBRepository {
     suspend fun getWatchlistMovies(): TMDBResponse<AccountMoviesResponse>
 
     suspend fun getFavoriteMovies(): TMDBResponse<AccountMoviesResponse>
+
+    suspend fun getMovieDetails(id: Int): MovieDetailsResponse
 }

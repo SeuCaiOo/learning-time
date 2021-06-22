@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_main">
+    app:startDestination="@id/navigation_movie_details">
 
     <fragment
         android:id="@+id/navigation_main"
@@ -50,5 +50,11 @@
         android:name="br.com.seucaio.learningtime.presentation.tv.popular.PopularTvFragment"
         android:label="@string/popular_tv"
         tools:layout="@layout/fragment_popular_tv" />
+
+    <fragment
+        android:id="@+id/navigation_movie_details"
+        android:name="br.com.seucaio.learningtime.presentation.movie.details.MovieDetailsFragment"
+        android:label="@string/movie_details"
+        tools:layout="@layout/fragment_movie_details" />
 
 </navigation>

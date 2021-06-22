@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.seucaio.learningtime.data.model.TMDBResponse
 import br.com.seucaio.learningtime.data.model.movie.AccountMoviesResponse
+import br.com.seucaio.learningtime.data.model.movie.MovieDetailsResponse
 import br.com.seucaio.learningtime.data.model.movie.PopularMovieResponse
 import br.com.seucaio.learningtime.domain.usecase.movie.GetAccountMoviesUseCase
+import br.com.seucaio.learningtime.domain.usecase.movie.GetMovieDetailsUseCase
 import br.com.seucaio.learningtime.domain.usecase.movie.GetPopularMoviesUseCase
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -15,11 +17,16 @@ import timber.log.Timber
 class MovieViewModel(
     private val popularMoviesUseCase: GetPopularMoviesUseCase,
     private val accountMoviesUseCase: GetAccountMoviesUseCase,
+    private val movieDetailsUseCase: GetMovieDetailsUseCase,
 ) : ViewModel() {
 
     private val _movies = MutableLiveData<TMDBResponse<PopularMovieResponse>>()
-    val movie: LiveData<TMDBResponse<PopularMovieResponse>>
+    val movies: LiveData<TMDBResponse<PopularMovieResponse>>
         get() = _movies
+
+    private val _movie = MutableLiveData<MovieDetailsResponse>()
+    val movie: LiveData<MovieDetailsResponse>
+        get() = _movie
 
     private val _accountMovies = MutableLiveData<TMDBResponse<AccountMoviesResponse>>()
     val accountMovies: LiveData<TMDBResponse<AccountMoviesResponse>>
@@ -31,6 +38,22 @@ class MovieViewModel(
     private val _hasError = MutableLiveData<Boolean>()
     val hasError: LiveData<Boolean> = _hasError
 
+
+    fun fetchMovieDetails(movieId: Int) {
+        _progressBarVisible.value = true
+        viewModelScope.launch {
+            runCatching { movieDetailsUseCase(movieId) }
+                .onSuccess { response ->
+                    _movie.value = response
+                    Timber.d("$response")
+                }
+                .onFailure {
+                    Timber.e(it)
+                    _hasError.value = true
+                }
+            _progressBarVisible.value = false
+        }
+    }
 
     fun fetchPopularMovies() {
         _progressBarVisible.value = true
@@ -47,7 +70,6 @@ class MovieViewModel(
             _progressBarVisible.value = false
         }
     }
-
 
     fun fetchWatchlistMovies() {
         _progressBarVisible.value = true
@@ -80,5 +102,7 @@ class MovieViewModel(
             _progressBarVisible.value = false
         }
     }
+
+
 
 }
