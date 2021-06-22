@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import br.com.seucaio.learningtime.databinding.FragmentFavoritesMoviesBinding
 import br.com.seucaio.learningtime.presentation.movie.MovieViewModel
 import br.com.seucaio.learningtime.presentation.movie.account.adapter.AccountMoviesAdapter
-import br.com.seucaio.learningtime.presentation.movie.popular.adapter.PopularMoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteMoviesFragment : Fragment() {

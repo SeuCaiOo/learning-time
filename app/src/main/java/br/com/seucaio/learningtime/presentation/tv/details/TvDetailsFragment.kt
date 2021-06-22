@@ -1,4 +1,4 @@
-package br.com.seucaio.learningtime.presentation.movie.details
+package br.com.seucaio.learningtime.presentation.tv.details
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -6,12 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import br.com.seucaio.learningtime.data.model.movie.MovieDetailsResponse
-import br.com.seucaio.learningtime.databinding.FragmentMovieDetailsBinding
-import br.com.seucaio.learningtime.presentation.movie.MovieViewModel
+import br.com.seucaio.learningtime.data.model.tv.TvDetailsResponse
+import br.com.seucaio.learningtime.databinding.FragmentTvDetailsBinding
+import br.com.seucaio.learningtime.presentation.tv.TvViewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -20,36 +19,36 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MovieDetailsFragment : Fragment() {
+class TvDetailsFragment : Fragment() {
 
-    private var _binding: FragmentMovieDetailsBinding? = null
+    private var _binding: FragmentTvDetailsBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: MovieViewModel by viewModel()
+    private val viewModel: TvViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentTvDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movieId = arguments?.getInt("movieId") ?: 584
+        val tvId = arguments?.getInt("tvId") ?: 2190
 
-        viewModel.fetchMovieDetails(movieId)
-        viewModel.movie.observe(viewLifecycleOwner, Observer { movie ->
-            binding.tvOverview.text = movie.overview
-            binding.tvReleaseDate.text = movie.releaseDate
-            "%.1f".format(movie.popularity).also { binding.tvPopularity.text = it }
-            binding.tvTitle.text = movie.title
-            binding.tvTagline.text = movie.tagline
-            setupImage(movie)
+        viewModel.fetchTvDetails(tvId)
+        viewModel.tv.observe(viewLifecycleOwner, Observer { tv ->
+            binding.tvOverview.text = tv.overview
+            binding.tvReleaseDate.text = tv.firstAirDate
+            "%.1f".format(tv.voteAverage).also { binding.tvPopularity.text = it }
+            binding.tvTitle.text = tv.name
+            binding.tvTagline.text = tv.tagline
+            setupImage(tv)
         })
 
         viewModel.progressBarVisible.observe(viewLifecycleOwner, Observer {
@@ -58,13 +57,13 @@ class MovieDetailsFragment : Fragment() {
 
     }
 
-    private fun setupImage(movie: MovieDetailsResponse) {
+    private fun setupImage(tv: TvDetailsResponse) {
         val baseUrl = "https://image.tmdb.org/t/p/original"
         val baseUrlW500 = "https://image.tmdb.org/t/p/w500"
-        val url: String? = with(movie) { posterPath ?.let { "$baseUrl$it" } }
+        val url: String = with(tv) { posterPath.let { "$baseUrl$it" } }
 
         binding.progressBar.visibility = View.VISIBLE;
-        Glide.with(this@MovieDetailsFragment)
+        Glide.with(this)
             .load(url)
             .transform(CircleCrop())
 //            .centerCrop()
@@ -98,4 +97,5 @@ class MovieDetailsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

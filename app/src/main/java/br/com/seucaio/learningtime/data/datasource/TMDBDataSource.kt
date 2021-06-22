@@ -5,15 +5,18 @@ import br.com.seucaio.learningtime.data.model.movie.AccountMoviesResponse
 import br.com.seucaio.learningtime.data.model.movie.MovieDetailsResponse
 import br.com.seucaio.learningtime.data.model.movie.PopularMovieResponse
 import br.com.seucaio.learningtime.data.model.tv.PopularTVResponse
+import br.com.seucaio.learningtime.data.model.tv.TvDetailsResponse
 
 interface TMDBDataSource {
+    suspend fun getPopularTV(): TMDBResponse<PopularTVResponse>
+
+    suspend fun getTvDetails(id: Int): TvDetailsResponse
+
     suspend fun getPopularMovies(): TMDBResponse<PopularMovieResponse>
 
-    suspend fun getPopularTV(): TMDBResponse<PopularTVResponse>
+    suspend fun getMovieDetails(id: Int): MovieDetailsResponse
 
     suspend fun getWatchlistMovies(): TMDBResponse<AccountMoviesResponse>
 
     suspend fun getFavoriteMovies(): TMDBResponse<AccountMoviesResponse>
-
-    suspend fun getMovieDetails(id: Int): MovieDetailsResponse
 }

@@ -10,6 +10,7 @@ import br.com.seucaio.learningtime.domain.usecase.movie.GetAccountMoviesUseCase
 import br.com.seucaio.learningtime.domain.usecase.movie.GetMovieDetailsUseCase
 import br.com.seucaio.learningtime.domain.usecase.movie.GetPopularMoviesUseCase
 import br.com.seucaio.learningtime.domain.usecase.tv.GetPopularTvUseCase
+import br.com.seucaio.learningtime.domain.usecase.tv.GetTvDetailsUseCase
 import br.com.seucaio.learningtime.presentation.movie.MovieViewModel
 import br.com.seucaio.learningtime.presentation.tv.TvViewModel
 import com.google.gson.Gson
@@ -44,10 +45,12 @@ object AppModule {
     }
 
     private val domainModule = module {
-        factory { GetPopularMoviesUseCase(repository = get()) }
         factory { GetPopularTvUseCase(repository = get()) }
-        factory { GetAccountMoviesUseCase(repository = get()) }
+        factory { GetTvDetailsUseCase(repository = get()) }
+
+        factory { GetPopularMoviesUseCase(repository = get()) }
         factory { GetMovieDetailsUseCase(repository = get()) }
+        factory { GetAccountMoviesUseCase(repository = get()) }
     }
 
     private val presentationModule = module {
@@ -61,11 +64,13 @@ object AppModule {
         }
 
         viewModel<TvViewModel> {
-            TvViewModel(useCase = get())
+            TvViewModel(
+                popularTvUseCase = get(),
+                tvDetailsUseCase = get()
+            )
         }
 
     }
-
 
     fun init() = loadKoinModules(listOf(dataModule, domainModule, presentationModule))
 }

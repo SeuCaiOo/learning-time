@@ -1,6 +1,5 @@
 package br.com.seucaio.learningtime.data.model.tv
 
-
 import com.google.gson.annotations.SerializedName
 
 data class PopularTVResponse(

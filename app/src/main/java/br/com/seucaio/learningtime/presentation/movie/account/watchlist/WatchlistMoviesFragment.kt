@@ -1,16 +1,15 @@
 package br.com.seucaio.learningtime.presentation.movie.account.watchlist
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.seucaio.learningtime.databinding.FragmentWatchlistMoviesBinding
 import br.com.seucaio.learningtime.presentation.movie.MovieViewModel
 import br.com.seucaio.learningtime.presentation.movie.account.adapter.AccountMoviesAdapter
-import br.com.seucaio.learningtime.presentation.movie.popular.adapter.PopularMoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WatchlistMoviesFragment : Fragment() {

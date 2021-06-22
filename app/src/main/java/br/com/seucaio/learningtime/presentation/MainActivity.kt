@@ -3,6 +3,7 @@ package br.com.seucaio.learningtime.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private val toolbar by lazy { binding.appBarMain.toolbar }
     private val navView by lazy { binding.navView }
+    private val drawerLayout by lazy { binding.drawerLayout }
     private val bottomNavView by lazy { binding.appBarMain.bottomNavView }
     private val navController by lazy {
         val navHostFragment = supportFragmentManager
@@ -24,14 +26,14 @@ class MainActivity : AppCompatActivity() {
         navHostFragment.navController
     }
     private val appBarConfiguration by lazy {
-        AppBarConfiguration(topLevelDestinationIds, binding.drawerLayout)
+        AppBarConfiguration(topLevelDestinationIds, drawerLayout)
     }
     private val topLevelDestinationIds = setOf(
         R.id.navigation_main,
         R.id.navigation_watchlist_movies,
         R.id.navigation_favorite_movies,
         R.id.navigation_popular_movies,
-        R.id.navigation_popular_tv
+        R.id.navigation_popular_tv,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,12 +58,23 @@ class MainActivity : AppCompatActivity() {
     private fun addOnDestinationChangedListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.navigation_popular_movies -> bottomNavView.isVisible = true
+                R.id.navigation_tv_details-> {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+                }
+                R.id.navigation_movie_details -> {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+                }
+                R.id.navigation_popular_movies -> {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+                    bottomNavView.isVisible = true
+                }
                 R.id.navigation_favorite_movies, R.id.navigation_watchlist_movies -> {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                     bottomNavView.isVisible = false
                 }
                 else -> {
                     bottomNavView.isVisible = true
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 }
             }

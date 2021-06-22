@@ -5,6 +5,7 @@ import br.com.seucaio.learningtime.data.model.movie.AccountMoviesResponse
 import br.com.seucaio.learningtime.data.model.movie.MovieDetailsResponse
 import br.com.seucaio.learningtime.data.model.movie.PopularMovieResponse
 import br.com.seucaio.learningtime.data.model.tv.PopularTVResponse
+import br.com.seucaio.learningtime.data.model.tv.TvDetailsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -24,6 +25,13 @@ interface TMDBService {
         @Query("language") language: String = LANGUAGE_PT_BR,
         @Query("page") page: String = PAGE_ONE
     ): TMDBResponse<PopularTVResponse>
+
+    @GET("tv/{id}")
+    suspend fun getTvDetails(
+        @Path("id") tvId: Int,
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("language") language: String = LANGUAGE_PT_BR
+    ): TvDetailsResponse
 
     @GET("movie/popular")
     suspend fun getPopularMovies(
