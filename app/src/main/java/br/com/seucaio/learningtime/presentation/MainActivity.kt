@@ -2,6 +2,7 @@ package br.com.seucaio.learningtime.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -14,9 +15,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val toolbar by lazy {
-        binding.appBarMain.toolbar
-    }
+    private val toolbar by lazy { binding.appBarMain.toolbar }
+    private val navView by lazy { binding.navView }
+    private val bottomNavView by lazy { binding.appBarMain.bottomNavView }
     private val navController by lazy {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -28,7 +29,9 @@ class MainActivity : AppCompatActivity() {
     private val topLevelDestinationIds = setOf(
         R.id.navigation_main,
         R.id.navigation_watchlist_movies,
-        R.id.navigation_favorite_movies
+        R.id.navigation_favorite_movies,
+        R.id.navigation_popular_movies,
+        R.id.navigation_popular_tv
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,12 +43,29 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.navView.setupWithNavController(navController)
+        navView.setupWithNavController(navController)
+        bottomNavView.setupWithNavController(navController)
 
+        addOnDestinationChangedListener()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun addOnDestinationChangedListener() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.navigation_popular_movies -> bottomNavView.isVisible = true
+                R.id.navigation_favorite_movies, R.id.navigation_watchlist_movies -> {
+                    bottomNavView.isVisible = false
+                }
+                else -> {
+                    bottomNavView.isVisible = true
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                }
+            }
+        }
     }
 
 }
