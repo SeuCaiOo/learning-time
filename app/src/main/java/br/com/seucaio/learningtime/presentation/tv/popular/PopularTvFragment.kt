@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import br.com.seucaio.learningtime.R
-import br.com.seucaio.learningtime.core.OnItemClickListener
+import br.com.seucaio.learningtime.core.adapter.OnItemClickListener
+import br.com.seucaio.learningtime.core.adapter.PopularAdapter
 import br.com.seucaio.learningtime.data.model.tv.PopularTVResponse
 import br.com.seucaio.learningtime.databinding.FragmentPopularTvBinding
 import br.com.seucaio.learningtime.presentation.tv.TvViewModel
-import br.com.seucaio.learningtime.presentation.tv.popular.adapter.PopularTvAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PopularTvFragment : Fragment() {
@@ -27,7 +27,7 @@ class PopularTvFragment : Fragment() {
 
     private val viewModel: TvViewModel by viewModel()
 
-    private lateinit var tvAdapter: PopularTvAdapter
+    private lateinit var tvAdapter: PopularAdapter<PopularTVResponse>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,16 +52,18 @@ class PopularTvFragment : Fragment() {
     }
 
     private fun setupAdapter(tvs: List<PopularTVResponse>) {
-        tvAdapter = PopularTvAdapter(
+        tvAdapter = PopularAdapter(
             tvs,
-            object : OnItemClickListener<Int> {
-                override fun onItemClick(item: Int) = navigateDetails(item)
+            object : OnItemClickListener<PopularTVResponse> {
+                override fun onItemClick(item: PopularTVResponse) {
+                    navigateDetails(item)
+                }
             })
         binding.recyclerPopularMovies.adapter = tvAdapter
     }
 
-    private fun navigateDetails(id: Int) {
-        val bundle = bundleOf("tvId" to id)
+    private fun navigateDetails(tvResponse: PopularTVResponse) {
+        val bundle = bundleOf("tvId" to tvResponse.id)
         findNavController()
             .navigate(
                 R.id.action_navigation_popular_tv_to_navigation_tv_details,

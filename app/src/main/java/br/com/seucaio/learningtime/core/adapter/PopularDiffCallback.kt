@@ -1,4 +1,4 @@
-package br.com.seucaio.learningtime.presentation.movie.popular.adapter
+package br.com.seucaio.learningtime.core.adapter
 /*
 
 import androidx.recyclerview.widget.DiffUtil

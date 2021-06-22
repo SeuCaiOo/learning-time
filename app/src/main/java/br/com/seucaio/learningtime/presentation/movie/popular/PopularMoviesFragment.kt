@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import br.com.seucaio.learningtime.R
-import br.com.seucaio.learningtime.core.OnItemClickListener
+import br.com.seucaio.learningtime.core.adapter.OnItemClickListener
+import br.com.seucaio.learningtime.core.adapter.PopularAdapter
 import br.com.seucaio.learningtime.data.model.movie.PopularMovieResponse
 import br.com.seucaio.learningtime.databinding.FragmentPopularMoviesBinding
 import br.com.seucaio.learningtime.presentation.movie.MovieViewModel
-import br.com.seucaio.learningtime.presentation.movie.popular.adapter.PopularMoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PopularMoviesFragment : Fragment() {
@@ -26,7 +26,7 @@ class PopularMoviesFragment : Fragment() {
 
     private val viewModel: MovieViewModel by viewModel()
 
-    private lateinit var moviesAdapter: PopularMoviesAdapter
+    private lateinit var moviesAdapter: PopularAdapter<PopularMovieResponse>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,16 +50,18 @@ class PopularMoviesFragment : Fragment() {
     }
 
     private fun setupAdapter(movies: List<PopularMovieResponse>) {
-        moviesAdapter = PopularMoviesAdapter(
+        moviesAdapter = PopularAdapter(
             movies,
-            object : OnItemClickListener<Int> {
-                override fun onItemClick(item: Int) = navigateDetails(item)
+            object : OnItemClickListener<PopularMovieResponse> {
+                override fun onItemClick(item: PopularMovieResponse) {
+                    navigateDetails(item)
+                }
             })
         binding.recyclerPopularMovies.adapter = moviesAdapter
     }
 
-    private fun navigateDetails(id: Int) {
-        val bundle = bundleOf("movieId" to id)
+    private fun navigateDetails(movieResponse: PopularMovieResponse) {
+        val bundle = bundleOf("movieId" to movieResponse.id)
         findNavController()
             .navigate(
                 R.id.action_navigation_popular_movies_to_navigation_movie_details,

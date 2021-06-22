@@ -46,7 +46,7 @@ class MovieDetailsFragment : Fragment() {
         viewModel.movie.observe(viewLifecycleOwner, Observer { movie ->
             binding.tvOverview.text = movie.overview
             binding.tvReleaseDate.text = movie.releaseDate
-            "%.1f".format(movie.popularity).also { binding.tvPopularity.text = it }
+            "%.1f".format(movie.voteAverage).also { binding.tvPopularity.text = it }
             binding.tvTitle.text = movie.title
             binding.tvTagline.text = movie.tagline
             setupImage(movie)
