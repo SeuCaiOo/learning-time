@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import br.com.seucaio.learningtime.R
 import br.com.seucaio.learningtime.core.adapter.OnItemClickListener
 import br.com.seucaio.learningtime.core.adapter.PopularAdapter
 import br.com.seucaio.learningtime.data.model.movie.PopularMovieResponse
@@ -25,6 +23,8 @@ class PopularMoviesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: MovieViewModel by viewModel()
+
+    private val directions = PopularMoviesFragmentDirections
 
     private lateinit var moviesAdapter: PopularAdapter<PopularMovieResponse>
 
@@ -61,12 +61,11 @@ class PopularMoviesFragment : Fragment() {
     }
 
     private fun navigateDetails(movieResponse: PopularMovieResponse) {
-        val bundle = bundleOf("movieId" to movieResponse.id)
-        findNavController()
-            .navigate(
-                R.id.action_navigation_popular_movies_to_navigation_movie_details,
-                bundle,
+        findNavController().navigate(
+            directions.actionNavigationPopularMoviesToNavigationMovieDetails(
+                movieId = movieResponse.id
             )
+        )
     }
 
     override fun onDestroyView() {

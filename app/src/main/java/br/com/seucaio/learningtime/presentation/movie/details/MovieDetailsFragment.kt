@@ -2,13 +2,13 @@ package br.com.seucaio.learningtime.presentation.movie.details
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import br.com.seucaio.learningtime.data.model.movie.MovieDetailsResponse
 import br.com.seucaio.learningtime.databinding.FragmentMovieDetailsBinding
 import br.com.seucaio.learningtime.presentation.movie.MovieViewModel
@@ -29,6 +29,8 @@ class MovieDetailsFragment : Fragment() {
 
     private val viewModel: MovieViewModel by viewModel()
 
+    private val args: MovieDetailsFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +42,7 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movieId = arguments?.getInt("movieId") ?: 584
+        val movieId: Int = args.movieId
 
         viewModel.fetchMovieDetails(movieId)
         viewModel.movie.observe(viewLifecycleOwner, Observer { movie ->
@@ -61,7 +63,7 @@ class MovieDetailsFragment : Fragment() {
     private fun setupImage(movie: MovieDetailsResponse) {
         val baseUrl = "https://image.tmdb.org/t/p/original"
         val baseUrlW500 = "https://image.tmdb.org/t/p/w500"
-        val url: String? = with(movie) { posterPath ?.let { "$baseUrl$it" } }
+        val url: String? = with(movie) { posterPath?.let { "$baseUrl$it" } }
 
         binding.progressBar.visibility = View.VISIBLE;
         Glide.with(this@MovieDetailsFragment)

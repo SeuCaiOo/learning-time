@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -63,7 +62,7 @@ class PopularTvFragment : Fragment() {
     }
 
     private fun navigateDetails(tvResponse: PopularTVResponse) {
-        val bundle = bundleOf("tvId" to tvResponse.id)
+        val bundle = Bundle().apply { putInt("tvId", tvResponse.id) }
         findNavController()
             .navigate(
                 R.id.action_navigation_popular_tv_to_navigation_tv_details,
