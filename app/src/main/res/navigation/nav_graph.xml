@@ -5,6 +5,11 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/navigation_main">
 
+    <action
+        android:id="@+id/action_to_navigation_main"
+        app:destination="@id/navigation_main"
+        app:popUpTo="@id/navigation_main" />
+
     <fragment
         android:id="@+id/navigation_main"
         android:name="br.com.seucaio.learningtime.presentation.MainFragment"

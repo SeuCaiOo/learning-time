@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
+        binding.appBarMain.fab.setOnClickListener { _ ->
+            navController.navigate(R.id.action_to_navigation_main)
+        }
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         bottomNavView.setupWithNavController(navController)
