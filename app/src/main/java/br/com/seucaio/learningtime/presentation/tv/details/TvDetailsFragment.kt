@@ -67,7 +67,7 @@ class TvDetailsFragment : Fragment() {
         val baseUrlW500 = "https://image.tmdb.org/t/p/w500"
         val url: String = with(tv) { posterPath.let { "$baseUrl$it" } }
 
-        binding.progressBar.visibility = View.VISIBLE;
+        binding.progressBarImage.isVisible =true
         Glide.with(this)
             .load(url)
             .transform(CircleCrop())
@@ -81,7 +81,7 @@ class TvDetailsFragment : Fragment() {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBarImage.isVisible =false
                     return false
                 }
 
@@ -91,7 +91,7 @@ class TvDetailsFragment : Fragment() {
                     target: Target<Drawable>?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBarImage.isVisible =false
                     return false
                 }
             })
