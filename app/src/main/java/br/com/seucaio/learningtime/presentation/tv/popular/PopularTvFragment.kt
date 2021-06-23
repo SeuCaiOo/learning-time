@@ -62,7 +62,7 @@ class PopularTvFragment : Fragment() {
     }
 
     private fun navigateDetails(tvResponse: PopularTVResponse) {
-        val bundle = Bundle().apply { putInt("tvId", tvResponse.id) }
+        val bundle = Bundle().apply { putParcelable("tv", tvResponse) }
         findNavController()
             .navigate(
                 R.id.action_navigation_popular_tv_to_navigation_tv_details,

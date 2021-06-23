@@ -66,9 +66,8 @@
         tools:layout="@layout/fragment_tv_details">
 
         <argument
-            android:name="tvId"
-            android:defaultValue="2190"
-            app:argType="integer" />
+            android:name="tv"
+            app:argType="br.com.seucaio.learningtime.data.model.tv.PopularTVResponse" />
     </fragment>
 
     <fragment

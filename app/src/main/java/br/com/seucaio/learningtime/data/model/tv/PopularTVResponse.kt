@@ -1,7 +1,10 @@
 package br.com.seucaio.learningtime.data.model.tv
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class PopularTVResponse(
     @SerializedName("backdrop_path")
     val backdropPath: String,
@@ -29,4 +32,4 @@ data class PopularTVResponse(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int
-)
+) : Parcelable

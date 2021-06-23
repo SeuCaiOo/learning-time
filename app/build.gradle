@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
+
 }
 
 android {
@@ -50,10 +52,10 @@ dependencies {
     implementation(Dependencies.material)
     implementation(Dependencies.constraintLayout)
 
-    implementation (Dependencies.lifecycleLiveDataKtxCore)
-    implementation (Dependencies.lifecycleLiveDataKtx)
-    implementation (Dependencies.lifecycleRuntimeKtx)
-    implementation (Dependencies.lifecycleViewModelKtx)
+    implementation(Dependencies.lifecycleLiveDataKtxCore)
+    implementation(Dependencies.lifecycleLiveDataKtx)
+    implementation(Dependencies.lifecycleRuntimeKtx)
+    implementation(Dependencies.lifecycleViewModelKtx)
     implementation(Dependencies.navigationFragmentKtx)
     implementation(Dependencies.navigationUiKtx)
 
@@ -85,10 +87,10 @@ dependencies {
     implementation(Dependencies.glide)
 
     // test
-    testImplementation (Dependencies.junit)
+    testImplementation(Dependencies.junit)
     testImplementation(Dependencies.okHttpMockWebServer)
 
     // androidTest
-    androidTestImplementation (Dependencies.extJUnit)
-    androidTestImplementation (Dependencies.espressoCore)
+    androidTestImplementation(Dependencies.extJUnit)
+    androidTestImplementation(Dependencies.espressoCore)
 }

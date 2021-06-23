@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
+import br.com.seucaio.learningtime.data.model.tv.PopularTVResponse
 import br.com.seucaio.learningtime.data.model.tv.TvDetailsResponse
 import br.com.seucaio.learningtime.databinding.FragmentTvDetailsBinding
 import br.com.seucaio.learningtime.presentation.tv.TvViewModel
@@ -28,6 +30,8 @@ class TvDetailsFragment : Fragment() {
 
     private val viewModel: TvViewModel by viewModel()
 
+    val args: TvDetailsFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +43,8 @@ class TvDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tvId = arguments?.getInt("tvId") ?: 2190
+        val popularTv = arguments?.getParcelable<PopularTVResponse>("tv")
+        val tvId = popularTv?.id ?: 2190
 
         viewModel.fetchTvDetails(tvId)
         viewModel.tv.observe(viewLifecycleOwner, Observer { tv ->
