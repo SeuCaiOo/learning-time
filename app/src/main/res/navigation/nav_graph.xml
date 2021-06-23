@@ -28,68 +28,81 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_watchlist_movies"
-        android:name="br.com.seucaio.learningtime.presentation.movie.account.watchlist.WatchlistMoviesFragment"
-        android:label="@string/watchlist"
-        tools:layout="@layout/fragment_watchlist_movies" >
+        android:id="@+id/navigation_popular_tv"
+        android:name="br.com.seucaio.learningtime.presentation.tv.popular.PopularTvFragment"
+        android:label="@string/popular_tv"
+        tools:layout="@layout/fragment_popular_tv">
         <action
-            android:id="@+id/action_navigation_watchlist_movies_to_navigation_movie_details"
-            app:destination="@id/navigation_movie_details" />
+            android:id="@+id/action_navigation_popular_tv_to_navigation_tv_details"
+            app:destination="@id/navigation_tv_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_favorite_movies"
-        android:name="br.com.seucaio.learningtime.presentation.movie.account.favorites.FavoriteMoviesFragment"
-        android:label="@string/favorites"
-        tools:layout="@layout/fragment_favorites_movies" >
-        <action
-            android:id="@+id/action_navigation_favorite_movies_to_navigation_movie_details"
-            app:destination="@id/navigation_movie_details" />
+        android:id="@+id/navigation_tv_details"
+        android:name="br.com.seucaio.learningtime.presentation.tv.details.TvDetailsFragment"
+        android:label="@string/tv_details"
+        tools:layout="@layout/fragment_tv_details">
+
+        <argument
+            android:name="tvId"
+            android:defaultValue="2190"
+            app:argType="integer" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_popular_movies"
         android:name="br.com.seucaio.learningtime.presentation.movie.popular.PopularMoviesFragment"
         android:label="@string/popular_movies"
-        tools:layout="@layout/fragment_popular_movies" >
+        tools:layout="@layout/fragment_popular_movies">
 
         <action
             android:id="@+id/action_navigation_popular_movies_to_navigation_movie_details"
-            app:destination="@id/navigation_movie_details" />
+            app:destination="@id/navigation_movie_details"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
 
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_popular_tv"
-        android:name="br.com.seucaio.learningtime.presentation.tv.popular.PopularTvFragment"
-        android:label="@string/popular_tv"
-        tools:layout="@layout/fragment_popular_tv" >
-        <action
-            android:id="@+id/action_navigation_popular_tv_to_navigation_tv_details"
-            app:destination="@id/navigation_tv_details" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_movie_details"
         android:name="br.com.seucaio.learningtime.presentation.movie.details.MovieDetailsFragment"
         android:label="@string/movie_details"
-        tools:layout="@layout/fragment_movie_details" >
+        tools:layout="@layout/fragment_movie_details">
 
         <argument
             android:name="movieId"
-            app:argType="integer"
-            android:defaultValue="584"/>
+            android:defaultValue="584"
+            app:argType="integer" />
     </fragment>
-    <fragment
-        android:id="@+id/navigation_tv_details"
-        android:name="br.com.seucaio.learningtime.presentation.tv.details.TvDetailsFragment"
-        android:label="@string/tv_details"
-        tools:layout="@layout/fragment_tv_details" >
 
-        <argument
-            android:name="tvId"
-            app:argType="integer"
-            android:defaultValue="2190"/>
+    <fragment
+        android:id="@+id/navigation_watchlist_movies"
+        android:name="br.com.seucaio.learningtime.presentation.movie.account.watchlist.WatchlistMoviesFragment"
+        android:label="@string/watchlist"
+        tools:layout="@layout/fragment_watchlist_movies">
+        <action
+            android:id="@+id/action_navigation_watchlist_movies_to_navigation_movie_details"
+            app:destination="@id/navigation_movie_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorite_movies"
+        android:name="br.com.seucaio.learningtime.presentation.movie.account.favorites.FavoriteMoviesFragment"
+        android:label="@string/favorites"
+        tools:layout="@layout/fragment_favorites_movies">
+        <action
+            android:id="@+id/action_navigation_favorite_movies_to_navigation_movie_details"
+            app:destination="@id/navigation_movie_details"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 
 </navigation>
