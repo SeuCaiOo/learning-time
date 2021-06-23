@@ -9,6 +9,7 @@
     <string name="popular_tv_fragment">Popular TV fragment</string>
     <string name="watchlist">Watchlist</string>
     <string name="favorites">Favorites</string>
+    <string name="dialog">Dialog</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="popular_tv">Popular TV</string>
     <string name="movie_details">Movie Details</string>

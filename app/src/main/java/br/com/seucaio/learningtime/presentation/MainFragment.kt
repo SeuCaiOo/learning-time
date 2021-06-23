@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_main_to_navigation_watchlist)
         }
 
-        binding.btinFavorites.setOnClickListener(
+        binding.btnFavorites.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 R.id.navigation_favorite_movies,
                 null
@@ -43,6 +43,15 @@ class MainFragment : Fragment() {
         }
         binding.btnPopularTv.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_main_to_navigation_popular_tv)
+        }
+
+
+        binding.btnDialog.setOnClickListener {
+            findNavController().navigate(
+                MainFragmentDirections.actionNavigationMainToNavigationDialogFragment(
+                    "Algum texto enviado ao Dialog"
+                )
+            )
         }
 
     }

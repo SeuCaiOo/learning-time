@@ -25,7 +25,25 @@
         <action
             android:id="@+id/action_navigation_main_to_navigation_popular_tv"
             app:destination="@id/navigation_popular_tv" />
+        <action
+            android:id="@+id/action_navigation_main_to_navigation_dialog_fragment"
+            app:destination="@id/navigation_dialog_fragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/navigation_dialog_fragment"
+        android:name="br.com.seucaio.learningtime.presentation.dialog.CustomDialogFragment">
+        <argument
+            android:name="message"
+            android:defaultValue="@null" />
+        <argument
+            android:name="ShowSnackBar"
+            android:defaultValue="true" />
+        <action
+            android:id="@+id/action_navigation_dialog_fragment_to_navigation_popular_movies"
+            app:destination="@id/navigation_popular_movies" />
+
+    </dialog>
 
     <fragment
         android:id="@+id/navigation_popular_tv"

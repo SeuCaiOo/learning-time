@@ -34,22 +34,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/watchlist"
-        app:layout_constraintBottom_toTopOf="@+id/btin_favorites"
-        app:layout_constraintEnd_toEndOf="@+id/btin_favorites"
+        app:layout_constraintBottom_toTopOf="@+id/btn_favorites"
+        app:layout_constraintEnd_toEndOf="@+id/btn_favorites"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/btin_favorites"
+        app:layout_constraintStart_toStartOf="@+id/btn_favorites"
         app:layout_constraintTop_toBottomOf="@+id/btn_popular_movies" />
 
     <Button
-        android:id="@+id/btin_favorites"
+        android:id="@+id/btn_favorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/favorites"
+        app:layout_constraintBottom_toTopOf="@+id/btn_dialog"
+        app:layout_constraintEnd_toEndOf="@+id/btn_dialog"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/btn_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/btn_watchlist" />
+
+    <Button
+        android:id="@+id/btn_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_watchlist" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_favorites" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

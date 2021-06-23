@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import br.com.seucaio.learningtime.R
 import br.com.seucaio.learningtime.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,7 +57,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addOnDestinationChangedListener() {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, arguments ->
+
+            arguments?.getBoolean("ShowSnackBar", false)?.let {showSnack ->
+                if (showSnack) {
+                    Snackbar.make(
+                        binding.drawerLayout,
+                        "Mostrar um Snackbar",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+
+
             when (destination.id) {
                 R.id.navigation_tv_details-> {
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
